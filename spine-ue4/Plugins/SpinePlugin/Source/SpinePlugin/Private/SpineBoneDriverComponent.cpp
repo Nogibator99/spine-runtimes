@@ -45,9 +45,27 @@ void USpineBoneDriverComponent::BeforeUpdateWorldTransform(USpineSkeletonCompone
 	if (skeleton == lastBoundComponent && skeleton) {
 		if (UseComponentTransform) {
 			skeleton->SetBoneWorldPosition(BoneName, GetComponentLocation());
+
+			/* ----- NICK ----- */
+			if (UseRotation) {
+				const FRotator Norm = GetComponentRotation().GetNormalized();
+				const float Angle = Norm.Yaw > 90.0f ? FMath::Sign(Norm.Pitch) * 180.0f - Norm.Pitch : Norm.Pitch;
+				skeleton->SetBoneWorldRotation(BoneName, Angle);
+			}
+			/* ---------------- */
 		} else {
 			AActor *owner = GetOwner();
-			if (owner) skeleton->SetBoneWorldPosition(BoneName, owner->GetActorLocation());
+			if (owner) {
+				skeleton->SetBoneWorldPosition(BoneName, owner->GetActorLocation());
+				
+				/* ----- NICK ----- */
+				if (UseRotation) {
+					const FRotator Norm = owner->GetActorRotation().GetNormalized();
+					const float Angle = Norm.Yaw > 90.0f ? FMath::Sign(Norm.Pitch) * 180.0f - Norm.Pitch : Norm.Pitch;
+					skeleton->SetBoneWorldRotation(BoneName, Angle);
+				}
+				/* ---------------- */
+			}
 		}
 	}
 }

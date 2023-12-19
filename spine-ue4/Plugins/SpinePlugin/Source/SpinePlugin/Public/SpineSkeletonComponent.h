@@ -79,6 +79,11 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Components|Spine|Skeleton")
 	void SetBoneWorldPosition(const FString &BoneName, const FVector &position);
 
+	/* ----- NICK ----- */
+	UFUNCTION(BlueprintCallable, Category = "Components|Spine|Skeleton")
+	void SetBoneWorldRotation(const FString &BoneName, float rotation);
+	/* ---------------- */
+
 	UFUNCTION(BlueprintCallable, Category = "Components|Spine|Skeleton")
 	void UpdateWorldTransform();
 

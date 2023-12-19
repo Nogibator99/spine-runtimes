@@ -73,7 +73,8 @@ void USpineSkeletonRendererComponent::TickComponent(float DeltaTime, ELevelTick 
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	AActor *owner = GetOwner();
-	if (owner) {
+	// --- NICK---
+	if (owner && owner->WasRecentlyRendered()) {
 		UClass *skeletonClass = USpineSkeletonComponent::StaticClass();
 		USpineSkeletonComponent *skeletonComponent = Cast<USpineSkeletonComponent>(owner->GetComponentByClass(skeletonClass));
 

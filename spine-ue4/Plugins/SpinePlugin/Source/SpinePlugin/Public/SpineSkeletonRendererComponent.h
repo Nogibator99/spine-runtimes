@@ -81,7 +81,7 @@ public:
 	UPROPERTY(Category = Spine, EditAnywhere, BlueprintReadWrite)
 	FName TextureParameterName;
 
-	UPROPERTY(Category = Spine, EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(Category = Spine, EditAnywhere, BlueprintReadWrite, /* NICK */ Interp)
 	FLinearColor Color = FLinearColor(1, 1, 1, 1);
 
 	/** Whether to generate collision geometry for the skeleton, or not. */

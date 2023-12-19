@@ -171,6 +171,18 @@ void USpineSkeletonComponent::SetBoneWorldPosition(const FString &BoneName, cons
 	}
 }
 
+/* ----- NICK ----- */
+void USpineSkeletonComponent::SetBoneWorldRotation(const FString& BoneName, float rotation)
+{
+	CheckState();
+	if (skeleton) {
+		Bone* bone = skeleton->findBone(TCHAR_TO_UTF8(*BoneName));
+		if (!bone) return;
+		bone->setRotation(rotation);
+	}
+}
+/* ---------------- */
+
 void USpineSkeletonComponent::UpdateWorldTransform() {
 	CheckState();
 	if (skeleton) {
